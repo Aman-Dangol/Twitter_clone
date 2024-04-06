@@ -66,4 +66,10 @@ class TwitterController extends Controller
       User::create($parsedData);
       return redirect(route('login'));
    }
+   // logout 
+   public function logout()
+   {
+      Auth::logout();
+      return redirect(route('home-page'));
+   }
 }
