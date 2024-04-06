@@ -5,10 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Twitter Login</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
   <main>
+    <header>
+      <h1>Twitter Clone</h1>
+    </header>
     <section>
       <form action="/store" method="post">
         @csrf()

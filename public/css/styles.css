@@ -1,6 +1,21 @@
-*{
-  box-sizing: border-box;
+:root {
+    --primary-color: white;
+    --background-color: black;
+    --secondary-color: blue;
 }
-h1{
-  text-align: center;
+
+* {
+    box-sizing: border-box;
+    background-color: black;
+    color: var(--primary-color);
+    border: 0;
+}
+h1 {
+    text-align: center;
+}
+
+input:focus {
+    border: 2px solid blue;
+    border-radius: 2px;
+    outline: 0;
 }

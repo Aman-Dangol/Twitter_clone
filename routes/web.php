@@ -17,5 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [TwitterController::class, 'index'])->name('home-page')->middleware('auth');
 Route::post('/tweet', [TwitterController::class, 'tweet'])->name('tweet');
 Route::get('/signup', [TwitterController::class, 'signup'])->name('signup');
+Route::post('/signin', [TwitterController::class, 'signin'])->name('signin');
 Route::get('/login', [TwitterController::class, 'login'])->name('login');
 Route::post('/store', [TwitterController::class, 'store'])->name('store');

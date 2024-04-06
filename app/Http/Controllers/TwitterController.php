@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TwitterController extends Controller
 {
@@ -19,6 +20,25 @@ class TwitterController extends Controller
    {
       return view("signup");
    }
+   public function signin(Request $request)
+   {
+      $request->validate([
+         'email' => ['required', 'email'],
+         'password' => 'required'
+      ]);
+      if (Auth::attempt([
+         'email' => $request->email,
+         'password' => $request->password
+      ])) {
+         return view('welcome');
+      } else {
+         return response("something went wrong");
+      }
+   }
+   public function login()
+   {
+      return view("login");
+   }
    public function store(Request $request)
    {
       $data = $request->validate([
@@ -29,7 +49,7 @@ class TwitterController extends Controller
       $parsedData = [
          'email' => $request->email,
          'username' => $request->username,
-         'password' => $request->password,
+         'password' => bcrypt($request->password),
       ];
 
       User::create($parsedData);

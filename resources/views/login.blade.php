@@ -10,13 +10,20 @@
 <body>
   <main>
     <section>
-      <form action="/sign-in" method="post">
+      <form action="/signin" method="post">
         @csrf()
         <label for="email">email</label>
-        <input type="email" name="email" required><br>
+        <input type="email" name="email"><br>
+        @error('email')
+        <div>{{$message}}</div>
+        @enderror()
         <label for="password">password</label>
-        <input type="password" name="password" required><br>
+        <input type="password" name="password"><br>
+        @error('password')
+        <div>{{$message}}</div>
+        @enderror()
         <button>login</button>
+       
       </form>
     </section>
   </main>
