@@ -23,6 +23,11 @@
         <button>submit</button>
       </form>
     </section>
+    <section>
+      <form action="/logout" method="get">
+        <button>logout</button>
+      </form>
+    </section>
   </main>
 </body>
 
