@@ -1,21 +1,64 @@
 :root {
     --primary-color: white;
     --background-color: black;
-    --secondary-color: blue;
+    --secondary-color: #1da1f2;
+}
+
+body {
+    background-color: black;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
 }
 
 * {
     box-sizing: border-box;
-    background-color: black;
-    color: var(--primary-color);
     border: 0;
+    margin: 3px;
+}
+
+main {
+    width: 70%;
+    min-width: 500px;
 }
 h1 {
     text-align: center;
 }
 
+input {
+    width: 90%;
+    margin-bottom: 2px;
+}
+
+hr {
+    border: 2px solid var(--secondary-color);
+}
+
+a{
+    color: var(--secondary-color);
+}
+/* form section */
+
+.form-section {
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+}
 input:focus {
-    border: 2px solid blue;
+    border: 2px solid var(--secondary-color);
     border-radius: 2px;
     outline: 0;
+}
+.err {
+    color: red;
+    width: fit-content;
+}
+.button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

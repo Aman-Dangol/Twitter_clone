@@ -16,7 +16,7 @@
     <section>
       <form action="/tweet" method="post">
         @csrf()
-        <input type="text" name="tweet">
+        <textarea name="text" id="" cols="30" rows="10" placeholder="{{Auth::id()}}"></textarea> <br>
         <button>submit</button>
       </form>
     </section>
