@@ -13,10 +13,13 @@
     <header>
       <h1>Twitter Clone</h1>
     </header>
-    <section>
+    <section class="form-section">
       <form action="/tweet" method="post">
         @csrf()
-        <textarea name="text" id="" cols="30" rows="10" placeholder="{{Auth::id()}}"></textarea> <br>
+        <textarea name="tweetText" id="" cols="30" rows="10" placeholder="{{Auth::id()}}"></textarea> <br>
+        @error('tweetText')
+        <div>{{$message}}</div>
+        @endError()
         <button>submit</button>
       </form>
     </section>

@@ -13,7 +13,7 @@
     <header>
       <h1>Twitter Clone</h1>
     </header>
-    <hr>
+    <!-- <hr> -->
     <section class="form-section">
       <form action="/signin" method="post">
         @csrf()
@@ -21,7 +21,7 @@
           <label for="email">email</label>
           <input type="email" name="email">
           <span></span>
-          <span class="err" id="EmailErr"></span>
+          <span class="err" id="EmailErr"> </span>
           @error('email')
           <script>
             document.getElementById('EmailErr').innerText = "{{$message}}";
@@ -44,9 +44,9 @@
         </div>
       </form>
     </section>
-    <hr>
+    <!-- <hr> -->
     <section>
-      <span>acreate account ? <a href="{{route('signup')}}">sign-up</a></span>
+      <p class="text-center">create account ? <a href="{{route('signup')}}">sign-up</a></p>
     </section>
   </main>
 

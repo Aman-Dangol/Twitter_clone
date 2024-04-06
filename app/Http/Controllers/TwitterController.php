@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,17 @@ class TwitterController extends Controller
    }
    public function tweet(Request $request)
    {
-      return response($request);
+      $request->validate([
+         'tweetText' => 'required'
+      ]);
+      $tweetersID = Auth::id();
+      $tweetText = $request->tweetText;
+      $parsedData = [
+         'userID' => $tweetersID,
+         "tweetText" => $tweetText
+      ];
+      Post::create($parsedData);
+      return response($parsedData);
    }
    public function signup()
    {
@@ -30,7 +41,7 @@ class TwitterController extends Controller
          'email' => $request->email,
          'password' => $request->password
       ])) {
-         return view('welcome');
+         return redirect(route('home-page'));
       } else {
          return response("something went wrong");
       }
@@ -53,6 +64,6 @@ class TwitterController extends Controller
       ];
 
       User::create($parsedData);
-      return response("check workbench");
+      return redirect(route('login'));
    }
 }
