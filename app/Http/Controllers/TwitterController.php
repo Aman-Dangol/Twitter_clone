@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+use function Laravel\Prompts\error;
 
 class TwitterController extends Controller
 {
    public function index()
    {
-      return view("welcome", ["content" => Post::all()]);
+      $tweets = DB::table('users')->join('posts', 'users.id', '=', 'posts.userID')->select('users.*', 'posts.*')->get();
+      return view("welcome", ["content" => $tweets]);
    }
    public function tweet(Request $request)
    {
@@ -50,10 +55,11 @@ class TwitterController extends Controller
    {
       return view("login");
    }
+   // storing register form ko data in database
    public function store(Request $request)
    {
       $data = $request->validate([
-         'email' => "required",
+         'email' => ["required", "unique:users"],
          'username' => "required",
          'password' => "required"
       ]);
@@ -62,8 +68,8 @@ class TwitterController extends Controller
          'username' => $request->username,
          'password' => bcrypt($request->password),
       ];
-
       User::create($parsedData);
+
       return redirect(route('login'));
    }
    // logout 

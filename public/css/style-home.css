@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+    border: 0;
+    text-transform: capitalize;
+}
+
+:root {
+    --primary-color: white;
+    --secondary-color: #1da1f2;
+    --background-color: black;
+}
+body {
+    background-color: black;
+    color: white;
+    margin: 0;
+}
+
+.form-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.navigation {
+    position: sticky;
+    top: 0;
+    gap: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 0;
+    border-right: 2px solid var(--secondary-color);
+    gap: 5rem;
+}
+
+.nav-content {
+    text-align: center;
+    width: 100%;
+    text-transform: capitalize;
+    padding: 1.1rem 0;
+}
+.nav-content:hover {
+    background-color: var(--secondary-color);
+    cursor: pointer;
+}
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-container {
+    background-color: var(--background-color);
+    border-right: 2px solid var(--secondary-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 2px solid var(--secondary-color);
+    border-top: 2px solid var(--secondary-color);
+    margin-bottom: 4%;
+}
+
+.contents {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+textarea {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    font-size: 20px;
+    width: 100%;
+    resize: none;
+    outline: none;
+}
+
+form > button {
+  background-color: var(--secondary-color);
+    color: var(--primary-color);
+    width: 5rem;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 4%;
+}
+
+form > button:hover,
+.hover:hover {
+    cursor: pointer;
+}
+
+.hover {
+    width: 100%;
+    text-align: center;
+    padding: 12px 4px;
+}
+
+.tweet {
+    border-top: 2px solid var(--secondary-color);
+}
+
+.interactions > a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+.tweet:last-child {
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.err {
+    color: red;
+}
