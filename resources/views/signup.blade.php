@@ -19,18 +19,18 @@
         <label for="user-name">user name :</label>
         <input type="user-name" name="username"><br>
         @error('username')
-        <div>{{$message}}</div>
+        <div class="err">{{$message}}</div>
         @enderror()
         <label for="email">email</label>
         <input type="email" name="email"><br>
         @error('email')
-        <div>{{$message}}</div>
+        <div class="err">{{$message}}</div>
         @enderror()
 
         <label for="password">password</label>
         <input type="password" name="password"><br>
         @error('password')
-        <div>{{$message}}</div>
+        <div class="err">{{$message}}</div>
         @enderror()
 
         <button>sign up</button>
