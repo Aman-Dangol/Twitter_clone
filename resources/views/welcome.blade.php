@@ -13,6 +13,7 @@
     <header>
       <h1>Twitter Clone</h1>
     </header>
+    <!-- tweet menu section -->
     <section class="form-section">
       <form action="/tweet" method="post">
         @csrf()
@@ -27,6 +28,13 @@
       <form action="/logout" method="get">
         <button>logout</button>
       </form>
+    </section>
+    <!-- for you page -->
+    <section>
+      @foreach($content as $post)
+      <div>{{$post['tweetText']}}</div>
+      <div></div>
+      @endforeach
     </section>
   </main>
 </body>

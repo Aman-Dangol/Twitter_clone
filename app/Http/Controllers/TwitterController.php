@@ -11,7 +11,7 @@ class TwitterController extends Controller
 {
    public function index()
    {
-      return view('welcome');
+      return view("welcome", ["content" => Post::all()]);
    }
    public function tweet(Request $request)
    {
@@ -25,7 +25,7 @@ class TwitterController extends Controller
          "tweetText" => $tweetText
       ];
       Post::create($parsedData);
-      return response($parsedData);
+      return redirect(route("home-page"));
    }
    public function signup()
    {
@@ -41,7 +41,7 @@ class TwitterController extends Controller
          'email' => $request->email,
          'password' => $request->password
       ])) {
-         return redirect(route('home-page'));
+         return redirect(route("home-page"));
       } else {
          return response("something went wrong");
       }
@@ -70,6 +70,6 @@ class TwitterController extends Controller
    public function logout()
    {
       Auth::logout();
-      return redirect(route('home-page'));
+      return redirect(route("home-page"));
    }
 }
