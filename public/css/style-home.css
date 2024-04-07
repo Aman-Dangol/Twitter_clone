@@ -38,6 +38,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
     margin-top: 0;
     border-right: 2px solid var(--secondary-color);
     gap: 5rem;
@@ -88,7 +89,7 @@ textarea {
 }
 
 form > button {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
     color: var(--primary-color);
     width: 5rem;
     padding: 6px;
@@ -99,7 +100,6 @@ form > button {
 
 form > button:hover,
 .hover:hover {
-    background-color: var(--secondary-color);
     cursor: pointer;
 }
 
