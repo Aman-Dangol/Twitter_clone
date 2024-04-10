@@ -54,15 +54,8 @@
       <div>dio</div>
     </section>
   </main>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+  <script src="/js/ajaxSetup.js" type="module"></script>
   <script>
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-
     function ajax() {
       console.log("button");
       $.ajax({
@@ -72,6 +65,7 @@
           '1': 'asd'
         },
         success: function(data) {
+          console.log(data);
           document.getElementsByClassName('tweet-container')[0].innerHTML = data;
         }
       })
