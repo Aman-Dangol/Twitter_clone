@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\TwitterController;
+use App\Models\Post;
+use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +25,4 @@ Route::post('/signin', [TwitterController::class, 'signin'])->name('signin');
 Route::get('/login', [TwitterController::class, 'login'])->name('login');
 Route::get('/logout', [TwitterController::class, 'logout'])->name('logout');
 Route::post('/store', [TwitterController::class, 'store'])->name('store');
+Route::post('ajaxReq', [AjaxController::class, 'tweets']);

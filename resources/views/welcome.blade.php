@@ -5,10 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/style-home.css" />
-  <title>twitter</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body>
+  <button onclick="ajax()">ajax</button>
   <main>
     <section class="navigation">
       <div class="nav-content">profile</div>
@@ -36,9 +38,11 @@
           <div>{{$tweet->tweetText}}</div>
           <div class="interactions">
             <a href="">like</a>
-            <a href="">comment</a>
+            <a href="">comments</a>
+            @if(Auth::id() == $tweet->userID)
             <a href="">update</a>
             <a href="">delete</a>
+            @endif
           </div>
         </div>
         @endforeach
@@ -50,6 +54,29 @@
       <div>dio</div>
     </section>
   </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <script>
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    function ajax() {
+      console.log("button");
+      $.ajax({
+        type: "post",
+        url: '/ajaxReq',
+        data: {
+          '1': 'asd'
+        },
+        success: function(data) {
+          document.getElementsByClassName('tweet-container')[0].innerHTML = data;
+        }
+      })
+    }
+  </script>
 </body>
 
 </html>
