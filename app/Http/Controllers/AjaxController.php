@@ -10,7 +10,8 @@ class AjaxController extends Controller
     //
     public function tweets()
     {
-        $content = DB::table('users')->join('posts', 'users.id', '=', 'posts.userID')->select('users.*', 'posts.*')->get();
+        $content = DB::table('users')->join('posts', 'users.id', '=', 'posts.userID')->select('users.*', 'posts.*')->orderBy('posts.created_at', 'desc')->get();
+        // return response($content);
         return view('tweet_section', ['content' => $content])->render();
     }
 }

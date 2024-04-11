@@ -19,7 +19,7 @@
         @csrf()
         <div class="form">
           <label for="email">email</label>
-          <input type="email" name="email">
+          <input type="email" name="email" required>
           <span></span>
           <span class="err" id="EmailErr"> </span>
           @error('email')
@@ -28,7 +28,7 @@
           </script>
           @enderror()
           <label for="password">password</label>
-          <input type="password" name="password">
+          <input type="password" name="password" required>
           <span></span>
           <span class="err" id="passErr"></span>
           @error('password')

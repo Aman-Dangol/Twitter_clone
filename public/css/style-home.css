@@ -101,6 +101,7 @@ form > button {
 form > button:hover,
 .hover:hover {
     cursor: pointer;
+    background-color: var(--secondary-color);
 }
 
 .hover {
