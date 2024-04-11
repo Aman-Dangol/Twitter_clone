@@ -1,10 +1,11 @@
 <section class="tweet-container">
-  @foreach($content as $tweet)
+  {{$data}}
+  @foreach($data as $tweet)
   <div class="tweet">
     <div>{{$tweet->username}}</div>
     <div>{{$tweet->tweetText}}</div>
     <div class="interactions">
-      <a href="/like?id={{$tweet->id}}">like</a>
+      <span>{{$tweet->likecount}}</span><a href="/like?id={{$tweet->id}}"> like</a>
       <a href="">comments</a>
       @if(Auth::id() == $tweet->userID)
       <a href="">update</a>

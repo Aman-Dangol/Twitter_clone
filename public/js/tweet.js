@@ -10,6 +10,7 @@ function ajax() {
             document.getElementsByClassName("tweet-container")[0].innerHTML =
                 data;
         },
+        
     });
 }
 

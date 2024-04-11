@@ -80,6 +80,7 @@ class TwitterController extends Controller
    }
    public function like(Request $req)
    {
+
       $data = [
          'postID' => $req->id,
          'userID' => Auth::id()
