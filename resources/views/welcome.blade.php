@@ -10,7 +10,6 @@
 </head>
 
 <body>
-  <button onclick="ajax()">ajax</button>
   <main>
     <section class="navigation">
       <div class="nav-content">profile</div>
@@ -36,9 +35,6 @@
     </section>
 
     <section class="chats">
-      <div>jojo</div>
-      <div>dio</div>
-    </section>
   </main>
   <script src="/js/ajaxSetup.js" type="module"></script>
   <script src="/js/tweet.js" type="module"></script>

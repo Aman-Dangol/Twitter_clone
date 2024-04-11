@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
 use Exception;
@@ -15,8 +16,7 @@ class TwitterController extends Controller
 {
    public function index()
    {
-      $tweets = DB::table('users')->join('posts', 'users.id', '=', 'posts.userID')->select('users.*', 'posts.*')->get();
-      return view("welcome", ["content" => $tweets]);
+      return view("welcome");
    }
    public function tweet(Request $request)
    {
@@ -77,5 +77,14 @@ class TwitterController extends Controller
    {
       Auth::logout();
       return redirect(route("home-page"));
+   }
+   public function like(Request $req)
+   {
+      $data = [
+         'postID' => $req->id,
+         'userID' => Auth::id()
+      ];
+      Like::create($data);
+      return redirect(route('home-page'));
    }
 }
