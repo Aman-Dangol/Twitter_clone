@@ -35,9 +35,11 @@
     </section>
 
     <section class="chats">
+    </section>
   </main>
   <script src="/js/ajaxSetup.js" type="module"></script>
   <script src="/js/tweet.js" type="module"></script>
+
 </body>
 
 </html>

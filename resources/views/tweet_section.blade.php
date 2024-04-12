@@ -1,4 +1,3 @@
-<section class="tweet-container">
   @php
   $arr =array();
   foreach($liked as $like){
@@ -11,10 +10,10 @@
     <div>{{$tweet->tweetText}}</div>
     <div class="interactions">
       @if (!in_array($tweet->id,$arr))
-      <span>{{$tweet->likecount}}</span> <a href="/like?id={{$tweet->id}}">like</a>
+      <span>{{$tweet->likecount}}</span> <a class="like" id="{{$tweet->id}}" >like</a>
 
       @else
-      <span>{{$tweet->likecount}}</span> <a href="">unlike</a>
+      <span>{{$tweet->likecount}}</span> <a class="unlike" href="" id="{{$tweet->id}}">unlike</a>
       @endif()
       <a href="">comments</a>
       @if(Auth::id() == $tweet->userID)
@@ -24,4 +23,3 @@
     </div>
   </div>
   @endforeach
-</section>

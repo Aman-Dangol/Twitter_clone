@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,5 +28,15 @@ class AjaxController extends Controller
             'data' => $data,
             'liked' => $liked
         ])->render();
+    }
+
+    public function like(Request $req)
+    {
+        $data = [
+            'postID' => $req->id,
+            'userID' => Auth::id()
+        ];
+        Like::create($data);
+        return response()->json();
     }
 }

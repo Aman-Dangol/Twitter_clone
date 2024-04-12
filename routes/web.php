@@ -26,4 +26,4 @@ Route::get('/login', [TwitterController::class, 'login'])->name('login');
 Route::get('/logout', [TwitterController::class, 'logout'])->name('logout');
 Route::post('/store', [TwitterController::class, 'store'])->name('store');
 Route::post('ajaxReq', [AjaxController::class, 'tweets']);
-Route::get('/like', [TwitterController::class, 'like']);
+Route::get('/like', [AjaxController::class, 'like']);
