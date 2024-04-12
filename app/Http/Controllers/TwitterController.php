@@ -78,14 +78,4 @@ class TwitterController extends Controller
       Auth::logout();
       return redirect(route("home-page"));
    }
-   public function like(Request $req)
-   {
-
-      $data = [
-         'postID' => $req->id,
-         'userID' => Auth::id()
-      ];
-      Like::create($data);
-      return redirect(route('home-page'));
-   }
 }

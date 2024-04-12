@@ -10,7 +10,7 @@
     <div>{{$tweet->tweetText}}</div>
     <div class="interactions">
       @if (!in_array($tweet->id,$arr))
-      <span>{{$tweet->likecount}}</span> <a class="like" id="{{$tweet->id}}" >like</a>
+      <span>{{$tweet->likecount}}</span> <a class="like" id="{{$tweet->id}}">like</a>
 
       @else
       <span>{{$tweet->likecount}}</span> <a class="unlike" href="" id="{{$tweet->id}}">unlike</a>
