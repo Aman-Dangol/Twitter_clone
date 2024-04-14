@@ -39,4 +39,9 @@ class AjaxController extends Controller
         Like::create($data);
         return response()->json();
     }
+    public function unlike(Request $req)
+    {
+        Like::where('userID', '=', Auth::id())->where('postID', '=', $req->id)->delete();
+        return response()->json();
+    }
 }

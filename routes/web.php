@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\TwitterController;
+use App\Models\Like;
 use App\Models\Post;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +29,4 @@ Route::get('/logout', [TwitterController::class, 'logout'])->name('logout');
 Route::post('/store', [TwitterController::class, 'store'])->name('store');
 Route::post('ajaxReq', [AjaxController::class, 'tweets']);
 Route::get('/like', [AjaxController::class, 'like']);
+Route::get('/unlike', [AjaxController::class, 'unlike']);

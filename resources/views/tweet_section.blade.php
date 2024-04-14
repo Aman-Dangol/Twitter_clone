@@ -13,7 +13,7 @@
       <span>{{$tweet->likecount}}</span> <a class="like" id="{{$tweet->id}}">like</a>
 
       @else
-      <span>{{$tweet->likecount}}</span> <a class="unlike" href="" id="{{$tweet->id}}">unlike</a>
+      <span>{{$tweet->likecount}}</span> <a class="unlike" id="{{$tweet->id}}">unlike</a>
       @endif()
       <a href="">comments</a>
       @if(Auth::id() == $tweet->userID)

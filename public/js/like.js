@@ -1,3 +1,3 @@
-export default function likeCount() {
+export default function likeList() {
     return document.querySelectorAll("a.like");
 }
