@@ -79,6 +79,9 @@ class TwitterController extends Controller
       Auth::logout();
       return redirect(route("home-page"));
    }
+
+
+   
    // display comments
 
    public function comments($id)
@@ -92,5 +95,19 @@ class TwitterController extends Controller
          'id' => $id,
          'comments' => $data,
       ]);
+   }
+   // add a comment
+   public function addComment(Request $req)
+   {
+      $req->validate([
+         'commentText' => 'required'
+      ]);
+      $data = [
+         'commentText' => $req->commentText,
+         'postID' => $req->postID,
+         'userID' => Auth::id()
+      ];
+      Comment::create($data);
+      return redirect()->back();
    }
 }

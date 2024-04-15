@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('likes', function (Blueprint $table) {
-            $table->integer("postID");
-            $table->integer('userID');
+            $table->unsignedBigInteger("postID");
+            $table->unsignedBigInteger('userID');
             $table->timestamps();
+            $table->foreign('postID')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade');
             $table->primary(['postID', 'userID']);
         });
     }

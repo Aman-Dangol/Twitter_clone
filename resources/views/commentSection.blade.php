@@ -20,7 +20,7 @@
         <!-- input comment -->
         <section class="form-section">
             <form action="/addcomment">
-                <input type="text" name="commentText" required />
+                <input type="text" name="commentText" required autocomplete="off" autofocus />
                 <input type="text" name="postID" value="{{$id}}" hidden>
                 @error('commentText')
                 <span>{{$message}}</span>

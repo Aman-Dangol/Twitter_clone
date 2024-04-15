@@ -32,15 +32,4 @@ Route::post('ajaxReq', [AjaxController::class, 'tweets']);
 Route::get('/like', [AjaxController::class, 'like'])->name('like');
 Route::get('/unlike', [AjaxController::class, 'unlike']);
 Route::get('/comment/{id}', [TwitterController::class, 'comments']);
-Route::get('/addcomment', function (Request $req) {
-  $req->validate([
-    'commentText' => 'required'
-  ]);
-  $data = [
-    'commentText' => $req->commentText,
-    'postID' => $req->postID,
-    'userID' => Auth::id()
-  ];
-  Comment::create($data);
-  return redirect()->back();
-});
+Route::get('/addcomment', [TwitterController::class, 'addComment']);

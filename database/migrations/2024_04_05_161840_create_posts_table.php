@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string("userID");
+            $table->unsignedBigInteger("userID");
             $table->string("tweetText");
             $table->timestamps();
+            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
