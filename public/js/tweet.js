@@ -14,20 +14,15 @@ async function ajax() {
                 data;
         },
     });
-    console.log();
     a_like_tags = likeList();
     a_unlike_tags = unlikeList();
     a_like_tags.forEach((tag) => {
-        console.log(tag);
         tag.onclick = () => {
-            console.log(tag.id);
             like(tag.id);
         };
     });
     a_unlike_tags.forEach((tag) => {
-        console.log(tag);
         tag.onclick = () => {
-            console.log(tag.id);
             unlike(tag.id);
         };
     });
@@ -42,7 +37,6 @@ function like(id) {
         },
         success: function () {
             ajax();
-            console.log("liked!!");
         },
     });
 }
@@ -55,7 +49,6 @@ function unlike(id) {
         },
         success: function () {
             ajax();
-            console.log("unliked!!");
         },
     });
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\TwitterController;
+use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -28,5 +29,18 @@ Route::get('/login', [TwitterController::class, 'login'])->name('login');
 Route::get('/logout', [TwitterController::class, 'logout'])->name('logout');
 Route::post('/store', [TwitterController::class, 'store'])->name('store');
 Route::post('ajaxReq', [AjaxController::class, 'tweets']);
-Route::get('/like', [AjaxController::class, 'like']);
+Route::get('/like', [AjaxController::class, 'like'])->name('like');
 Route::get('/unlike', [AjaxController::class, 'unlike']);
+Route::get('/comment/{id}', [TwitterController::class, 'comments']);
+Route::get('/addcomment', function (Request $req) {
+  $req->validate([
+    'commentText' => 'required'
+  ]);
+  $data = [
+    'commentText' => $req->commentText,
+    'postID' => $req->postID,
+    'userID' => Auth::id()
+  ];
+  Comment::create($data);
+  return redirect()->back();
+});

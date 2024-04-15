@@ -1,0 +1,29 @@
+body {
+    background-color: black;
+    color: white;
+}
+main {
+    width: 700px;
+    margin: 0 auto;
+}
+.tweet {
+    border: 2px solid whitesmoke;
+}
+.comment {
+    border: 2px solid whitesmoke;
+    border-top: 0;
+}
+
+.form-section {
+    background-color: red;
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+}
+form > input{
+  flex: 1;
+}

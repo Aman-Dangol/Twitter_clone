@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
@@ -77,5 +78,19 @@ class TwitterController extends Controller
    {
       Auth::logout();
       return redirect(route("home-page"));
+   }
+   // display comments
+
+   public function comments($id)
+   {
+      $data = DB::table('comments')
+         ->join('users', 'users.id', '=', 'comments.userID')
+         ->select(['users.id', 'users.username', 'comments.commentText'])
+         ->where('comments.postID', '=', $id)
+         ->get();
+      return view('commentSection', [
+         'id' => $id,
+         'comments' => $data,
+      ]);
    }
 }
