@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,5 +44,9 @@ class AjaxController extends Controller
     {
         Like::where('userID', '=', Auth::id())->where('postID', '=', $req->id)->delete();
         return response()->json();
+    }
+    public function deletePost(Request $req)
+    {
+        Post::destroy($req->postID);
     }
 }

@@ -33,3 +33,4 @@ Route::get('/like', [AjaxController::class, 'like'])->name('like');
 Route::get('/unlike', [AjaxController::class, 'unlike']);
 Route::get('/comment/{id}', [TwitterController::class, 'comments']);
 Route::get('/addcomment', [TwitterController::class, 'addComment']);
+Route::post('/deletePost', [AjaxController::class, 'deletePost']);

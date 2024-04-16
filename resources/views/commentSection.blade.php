@@ -11,17 +11,20 @@
 <body>
     <main>
         <!-- comment header -->
+        <a href="{{route('home-page')}}">home</a>
         <section class="tweet">
-            <div>userName</div>
-            <div>{{$id}}</div>
-            <div>context hello world</div>
-            <div>interactions</div>
+            <div>{{$mainPost[0]->username}}</div>
+            <div></div>
+            <div>{{$mainPost[0]->tweetText}}</div>
+            <div>
+                <a href="/likeComment">like</a>
+            </div>
         </section>
         <!-- input comment -->
         <section class="form-section">
             <form action="/addcomment">
                 <input type="text" name="commentText" required autocomplete="off" autofocus />
-                <input type="text" name="postID" value="{{$id}}" hidden>
+                <input type="text" name="postID" value='{{$mainPost[0]->postID}}' hidden>
                 @error('commentText')
                 <span>{{$message}}</span>
                 @enderror()
@@ -34,6 +37,9 @@
             <div class="comment">
                 <div>{{$comment->username}}</div>
                 <div>{{$comment->commentText}}</div>
+                <div class="interactions">
+
+                </div>
             </div>
             @endforeach
         </section>

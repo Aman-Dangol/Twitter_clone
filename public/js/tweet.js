@@ -1,7 +1,9 @@
 import likeList from "/js/like.js";
 import unlikeList from "/js/unlike.js";
+import deleteP from "/js/deletePost.js";
 let a_like_tags;
 let a_unlike_tags;
+let a_posts_tags;
 async function ajax() {
     await $.ajax({
         type: "post",
@@ -16,6 +18,7 @@ async function ajax() {
     });
     a_like_tags = likeList();
     a_unlike_tags = unlikeList();
+    let a_posts_tags = deleteP();
     a_like_tags.forEach((tag) => {
         tag.onclick = () => {
             like(tag.id);
@@ -24,6 +27,12 @@ async function ajax() {
     a_unlike_tags.forEach((tag) => {
         tag.onclick = () => {
             unlike(tag.id);
+        };
+    });
+    console.log(a_posts_tags);
+    a_posts_tags.forEach((tag) => {
+        tag.onclick = () => {
+            deletePost(tag.id);
         };
     });
 }
@@ -46,6 +55,19 @@ function unlike(id) {
         url: "/unlike",
         data: {
             id: id,
+        },
+        success: function () {
+            ajax();
+        },
+    });
+}
+
+function deletePost(id) {
+    $.ajax({
+        type: "post",
+        url: "/deletePost",
+        data: {
+            postID: id,
         },
         success: function () {
             ajax();

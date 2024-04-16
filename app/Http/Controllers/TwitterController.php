@@ -81,18 +81,24 @@ class TwitterController extends Controller
    }
 
 
-   
+
    // display comments
 
-   public function comments($id)
+   public function comments($ID)
    {
       $data = DB::table('comments')
          ->join('users', 'users.id', '=', 'comments.userID')
-         ->select(['users.id', 'users.username', 'comments.commentText'])
-         ->where('comments.postID', '=', $id)
+         ->select(['users.id', 'users.username', 'comments.commentText', 'comments.id as commentID'])
+         ->where('comments.postID', '=', $ID)
+         ->get();
+
+      $mainPost = DB::table('posts')
+         ->join('users', 'posts.userID', '=', 'users.id')
+         ->select(['users.id as userID', 'posts.tweetText', 'posts.id as postID', 'users.username'])
+         ->where('posts.id', '=', $ID)
          ->get();
       return view('commentSection', [
-         'id' => $id,
+         'mainPost' => $mainPost,
          'comments' => $data,
       ]);
    }
