@@ -17,7 +17,7 @@
       @endif()
       <a href="/comment/{{$tweet->id}}">comments</a>
       @if(Auth::id() == $tweet->userID)
-      <a id="">update</a>
+      <a href="/updateTweet?id={{$tweet->id}}">update</a>
       <a id="{{$tweet->id}}" class="post">delete</a>
       @endif
     </div>

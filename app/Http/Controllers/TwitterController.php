@@ -116,4 +116,19 @@ class TwitterController extends Controller
       Comment::create($data);
       return redirect()->back();
    }
+   // display update tweet page
+   public function updateTweet(Request $req)
+   {
+      $data = DB::table('posts')
+         ->where('posts.id', '=', $req->id)
+         ->get();
+      // return response($data);
+      return view('updateTweet', ['data' => $data]);
+   }
+
+   // update tweet
+
+   public function update(){
+
+   }
 }

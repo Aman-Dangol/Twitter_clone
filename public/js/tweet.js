@@ -29,7 +29,6 @@ async function ajax() {
             unlike(tag.id);
         };
     });
-    console.log(a_posts_tags);
     a_posts_tags.forEach((tag) => {
         tag.onclick = () => {
             deletePost(tag.id);
