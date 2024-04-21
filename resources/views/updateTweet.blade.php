@@ -12,6 +12,8 @@
   <main>
     <section>
       <form action="/update" method="post">
+        @csrf()
+        <input type="text" name ="id" value="{{$data[0]->id}}" hidden >
         <input type="text" name="updatedText" value="{{$data[0]->tweetText}}" />
         <button>update</button>
       </form>

@@ -13,9 +13,8 @@
   <main>
     <section class="navigation">
       <div class="nav-content">profile</div>
-      <div class="nav-content">notification</div>
       <div class="nav-content">settings</div>
-      <div class="nav-content"><a href="/logout">logout</a></div>
+      <div class="nav-content"><a href="/logout" class="logout">logout</a></div>
     </section>
     <section class="content-container">
       <form action="/tweet" class="flex-row" method="post">

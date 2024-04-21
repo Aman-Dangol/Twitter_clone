@@ -27,10 +27,16 @@ main {
 }
 a {
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     cursor: pointer;
 }
 
+.logout{
+    color: var(--primary-color);
+}
+.unfollow:hover{
+    color: red;
+}
 .navigation {
     position: sticky;
     top: 0;

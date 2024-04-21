@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Follow;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
@@ -92,9 +93,14 @@ class TwitterController extends Controller
          ->where('comments.postID', '=', $ID)
          ->get();
 
-      $mainPost = DB::table('posts')
-         ->join('users', 'posts.userID', '=', 'users.id')
-         ->select(['users.id as userID', 'posts.tweetText', 'posts.id as postID', 'users.username'])
+      $mainPost =  DB::table('posts')
+         ->join('users', 'users.id', '=', 'posts.userID')
+         ->leftJoin('likes', 'likes.postID', '=', 'posts.id')
+         ->select(['posts.id', 'users.username', 'posts.userID', 'posts.tweetText'])
+         ->selectRaw('COUNT(likes.postID) AS likeCount')
+         ->selectRaw('CASE WHEN EXISTS (SELECT 1 FROM likes WHERE likes.postID = posts.id AND likes.userID = ?) THEN 1 ELSE 0 END AS userLiked', [Auth::id()])
+         ->groupBy('posts.id')
+         ->orderBy('posts.updated_at', 'desc')
          ->where('posts.id', '=', $ID)
          ->get();
       return view('commentSection', [
@@ -122,13 +128,34 @@ class TwitterController extends Controller
       $data = DB::table('posts')
          ->where('posts.id', '=', $req->id)
          ->get();
-      // return response($data);
       return view('updateTweet', ['data' => $data]);
    }
 
    // update tweet
 
-   public function update(){
-
+   public function update(Request $req)
+   {
+      $data = Post::find($req->id);
+      $data->tweetText = $req->updatedText;
+      $data->save();
+      return redirect(route('home-page'));
+   }
+   // when someone(auth) follows somebody
+   public function follow($id)
+   {
+      $data = [
+         'followerID' => Auth::id(),
+         'followingID' => $id
+      ];
+      Follow::create($data);
+      return redirect(route('home-page'));
+   }
+   public function unfollow($id)
+   {
+      DB::table('follows')
+         ->where('followerID', Auth::id())
+         ->where('followingID', $id)
+         ->delete();
+      return redirect(route('home-page'));
    }
 }

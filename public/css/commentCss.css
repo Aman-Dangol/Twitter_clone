@@ -2,28 +2,36 @@ body {
     background-color: black;
     color: white;
 }
+:root {
+    --primary-color: white;
+    --secondary-color: #1da1f2;
+    --background-color: black;
+}
 main {
     width: 700px;
     margin: 0 auto;
 }
 .tweet {
-    border: 2px solid whitesmoke;
+    border: 2px solid var(--secondary-color);
 }
 .comment {
-    border: 2px solid whitesmoke;
+    border: 2px solid var(--secondary-color);
     border-top: 0;
 }
 
 .form-section {
-    background-color: red;
     width: 100%;
 }
 
 form {
     display: flex;
     flex-direction: row;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
-form > input{
-  flex: 1;
+form > input {
+    flex: 1;
+}
+a {
+    color: var(--secondary-color);
+    cursor: pointer;
 }

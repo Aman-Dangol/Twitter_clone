@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>comments</title>
     <link rel="stylesheet" href="/css/commentCss.css" />
 </head>
@@ -17,14 +19,19 @@
             <div></div>
             <div>{{$mainPost[0]->tweetText}}</div>
             <div>
-                <a href="/likeComment">like</a>
+                <span>{{$mainPost[0]->likeCount}}</span>
+                @if($mainPost[0]->userLiked == 0)
+                <a class="like post" id="{{$mainPost[0]->id}}">like</a>
+                @else
+                <a class="unlike post" id="{{$mainPost[0]->id}}">unlike</a>
+                @endif
             </div>
         </section>
         <!-- input comment -->
         <section class="form-section">
             <form action="/addcomment">
                 <input type="text" name="commentText" required autocomplete="off" autofocus />
-                <input type="text" name="postID" value='{{$mainPost[0]->postID}}' hidden>
+                <input type="text" id="postID" name="postID" value='{{$mainPost[0]->id}}' hidden>
                 @error('commentText')
                 <span>{{$message}}</span>
                 @enderror()
@@ -44,6 +51,8 @@
             @endforeach
         </section>
     </main>
+    <script src="/js/ajaxSetup.js" type="module"></script>
+    <script src="/js/commentSection.js" type="module"></script>
 </body>
 
 </html>
