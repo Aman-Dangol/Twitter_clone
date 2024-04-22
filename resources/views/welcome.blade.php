@@ -26,7 +26,7 @@
         <button>post</button>
       </form>
       <section class="contents">
-        <section class="hover">for you</section>
+        <section class="hover" id="" >for you</section>
         <section class="hover">following</section>
       </section>
       <section class="tweet-container">

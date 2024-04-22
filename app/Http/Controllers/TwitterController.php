@@ -91,6 +91,7 @@ class TwitterController extends Controller
          ->join('users', 'users.id', '=', 'comments.userID')
          ->select(['users.id', 'users.username', 'comments.commentText', 'comments.id as commentID'])
          ->where('comments.postID', '=', $ID)
+         ->orderBy('comments.updated_at', 'desc')
          ->get();
 
       $mainPost =  DB::table('posts')
