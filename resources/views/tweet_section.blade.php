@@ -1,4 +1,6 @@
   @foreach($data as $tweet)
+  @if(($tweet->userFollow == 1 || $tweet->userID == Auth::id()) || $type == 'foryou')
+
   <div class="tweet">
     <div>{{$tweet->username}}</div>
     @if(Auth::id() != $tweet->userID)
@@ -22,6 +24,7 @@
       @if(Auth::id() == $tweet->userID)
       <a href="/updateTweet?id={{$tweet->id}}">update</a>
       <a id="{{$tweet->id}}" class="post">delete</a>
+      @endif
       @endif
     </div>
   </div>

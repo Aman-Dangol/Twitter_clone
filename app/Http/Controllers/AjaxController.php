@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class AjaxController extends Controller
 {
     //
-    public function tweets()
+    public function tweets(Request $req)
     {
         $data =  DB::table('posts')
             ->join('users', 'users.id', '=', 'posts.userID')
@@ -33,7 +33,8 @@ class AjaxController extends Controller
 
         return view('tweet_section', [
             'data' => $data,
-            'liked' => $liked
+            'liked' => $liked,
+            'type' => $req->type
         ])->render();
     }
 

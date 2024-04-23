@@ -1,13 +1,29 @@
 import likeList from "/js/like.js";
 import unlikeList from "/js/unlike.js";
 import deleteP from "/js/deletePost.js";
+
+let foryou = document.getElementById("forYou");
+let following = document.getElementById("following");
+let tweetType = localStorage.getItem("type") || "foryou";
+
+foryou.onclick = () => {
+    localStorage.setItem("type", "foryou");
+    tweetType = "foryou";
+    ajax(tweetType);
+};
+following.onclick = () => {
+    localStorage.setItem("type", "following");
+    tweetType = "following";
+    ajax("following");
+};
 let a_like_tags;
 let a_unlike_tags;
 let a_posts_tags;
-async function ajax() {
+async function ajax(type = tweetType) {
     await $.ajax({
         type: "post",
         url: "/ajaxReq",
+        data: { type: type },
         success: function (data) {
             document.getElementsByClassName("tweet-container")[0].innerHTML =
                 data;
@@ -15,7 +31,7 @@ async function ajax() {
     });
     a_like_tags = likeList();
     a_unlike_tags = unlikeList();
-    let a_posts_tags = deleteP();
+    a_posts_tags = deleteP();
     a_like_tags.forEach((tag) => {
         tag.onclick = () => {
             like(tag.id);

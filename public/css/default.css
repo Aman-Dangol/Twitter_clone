@@ -1,0 +1,16 @@
+:root {
+    --primary-color: white;
+    --background-color: black;
+    --secondary-color: #1da1f2;
+}
+
+body {
+    background-color: black;
+    color: var(--primary-color);
+}
+
+* {
+    box-sizing: border-box;
+    border: 0;
+    margin: 3px;
+}
