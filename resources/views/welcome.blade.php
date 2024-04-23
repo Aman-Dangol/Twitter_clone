@@ -19,7 +19,7 @@
     <section class="content-container">
       <form action="/tweet" class="flex-row" method="post">
         @csrf()
-        <textarea name="tweetText" id="" cols="30" rows="2" placeholder="whats on your mind ?"></textarea><br />
+        <textarea name="tweetText" id="" cols="30" rows="5" placeholder="whats on your mind ?"></textarea><br />
         @error('tweetText')
         <div class="err">{{$message}}</div>
         @endError()<br />

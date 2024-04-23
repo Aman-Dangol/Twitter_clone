@@ -19,6 +19,8 @@ following.onclick = () => {
 let a_like_tags;
 let a_unlike_tags;
 let a_posts_tags;
+
+// refreshes tweets
 async function ajax(type = tweetType) {
     await $.ajax({
         type: "post",
@@ -47,6 +49,14 @@ async function ajax(type = tweetType) {
             deletePost(tag.id);
         };
     });
+
+    if (tweetType == "foryou") {
+        foryou.style.backgroundColor = "var(--secondary-color)";
+        following.style.backgroundColor = "black";
+    } else {
+        following.style.backgroundColor = "var(--secondary-color)";
+        foryou.style.backgroundColor = "black";
+    }
 }
 
 function like(id) {

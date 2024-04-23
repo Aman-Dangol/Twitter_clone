@@ -1,7 +1,6 @@
 * {
     box-sizing: border-box;
     border: 0;
-    text-transform: capitalize;
 }
 
 :root {
@@ -31,10 +30,10 @@ a {
     cursor: pointer;
 }
 
-.logout{
+.logout {
     color: var(--primary-color);
 }
-.unfollow:hover{
+.unfollow:hover {
     color: red;
 }
 .navigation {
@@ -93,8 +92,12 @@ textarea {
     width: 100%;
     resize: none;
     outline: none;
+    white-space: pre;
 }
 
+.tweetText{
+    white-space: pre;
+}
 form > button {
     background-color: var(--secondary-color);
     color: var(--primary-color);

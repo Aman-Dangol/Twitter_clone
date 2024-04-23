@@ -12,7 +12,7 @@
     @endif
     @endif
 
-    <div>{{$tweet->tweetText}}</div>
+    <div class="tweetText">{{$tweet->tweetText}}</div>
     <div class="interactions">
       @if (!$tweet->userLiked)
       <span>{{$tweet->likeCount}}</span> <a class="like " id="{{$tweet->id}}">like</a>
