@@ -149,7 +149,7 @@ class TwitterController extends Controller
          'followingID' => $id
       ];
       Follow::create($data);
-      return redirect(route('home-page'));
+      return redirect()->back();
    }
    public function unfollow($id)
    {
@@ -157,12 +157,61 @@ class TwitterController extends Controller
          ->where('followerID', Auth::id())
          ->where('followingID', $id)
          ->delete();
-      return redirect(route('home-page'));
+      return redirect()->back();
    }
 
    // display profile page\
    public function profile($id)
    {
-      return view('profile', ['id' => $id]);
+      $followersList = Follow::where('follows.followingID', $id)
+         ->join('users', 'follows.followerID', '=', 'users.id')
+         ->select('follows.followingID', 'users.id', 'users.username')
+         ->get();;
+      $followingList = Follow::where('follows.followerID', $id)
+         ->join('users', 'follows.followingID', '=', 'users.id')
+         ->select('follows.followerID', 'users.id', 'users.username')
+         ->get();;
+      $follows = Follow::where('followerID', Auth::id())->where('followingID', $id)->count();
+      $followers = Follow::where('followingID', '=', $id)->count();
+      $following = Follow::where('followerID', '=', $id)->count();
+      return view('profile', [
+         'user' => User::find($id),
+         'followers' => $followers,
+         'following' => $following,
+         'follows' => $follows,
+         'followersList' => $followersList,
+         'followingList' => $followingList
+      ]);
+   }
+   // display profile's posts
+   function profilePosts(Request $req)
+   {
+      $data =  DB::table('posts')
+         ->join('users', 'users.id', '=', 'posts.userID')
+         ->leftJoin('likes', 'likes.postID', '=', 'posts.id')
+         ->select(['posts.id', 'users.username', 'posts.userID', 'posts.tweetText'])
+         ->selectRaw('COUNT(likes.postID) AS likeCount')
+         ->selectRaw('CASE WHEN EXISTS (SELECT 1 FROM likes WHERE likes.postID = posts.id AND likes.userID = ?) THEN 1 ELSE 0 END AS userLiked', [Auth::id()])
+         ->selectRaw('CASE WHEN EXISTS (SELECT 1 FROM follows WHERE  follows.followerID = ?) THEN 1 ELSE 0 END AS userFollow', [Auth::id()])
+         ->selectRaw('CASE WHEN EXISTS (SELECT 1 FROM follows WHERE follows.followerID = ? AND follows.followingID = posts.userID) THEN 1 ELSE 0 END AS userFollow', [Auth::id()])
+         ->groupBy('posts.id')
+         ->where('posts.userID', '=', $req->id)
+         ->orderBy('posts.updated_at', 'desc')
+         ->get();
+      return view('yourPost', ['posts' => $data])->render();
+   }
+   function search(Request $req)
+   {
+      $users = User::where(function ($query) use ($req) {
+         $query->where('username', 'REGEXP', $req->s);
+      })->select(['users.username', 'users.id'])
+         ->get();
+
+      return view('search', ['results' => $users, 's' => $req->s]);
+   }
+
+   function settings()
+   {
+      return view('settings');
    }
 }

@@ -57,6 +57,9 @@ a {
     text-transform: capitalize;
     padding: 1.1rem 0;
 }
+.nav-content > a {
+    color: var(--primary-color);
+}
 .nav-content:hover {
     background-color: var(--secondary-color);
     cursor: pointer;
@@ -125,7 +128,10 @@ form > button:hover,
     border-top: 2px solid var(--secondary-color);
 }
 
-.interactions > a {
+.tweet:last-child {
+    border: 2px solid var(--secondary-color);
+}
+
 .interactions > a {
     text-decoration: none;
     color: var(--secondary-color);
@@ -138,3 +144,19 @@ form > button:hover,
 .err {
     color: red;
 }
+
+.search > form {
+    height: 10.2%;
+    display: flex;
+    flex-direction: row;
+    padding: 3%;
+
+    gap: 3%;
+}
+
+.search-form > * {
+    margin: 0;
+    padding: 0;
+    height: 20%;
+}
+/* search */

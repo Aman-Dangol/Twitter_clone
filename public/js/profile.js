@@ -3,12 +3,33 @@ import unlikeList from "/js/unlike.js";
 import deleteP from "/js/deletePost.js";
 
 let postsTab = document.getElementById("postsTab");
+let userID = document.getElementById("userID").innerHTML;
+let followerList = document.getElementById("followerList");
+let followingList = document.getElementById("followingList");
+let followers = document.getElementById("followers");
+let following = document.getElementById("following");
+console.log(following);
+
+followers.onclick = () => {
+    followerList.style.display = "flex";
+};
+followerList.onclick = () => {
+    followerList.style.display = "none";
+};
+following.onclick = () => {
+    followingList.style.display = "flex";
+};
+followingList.onclick = () => {
+    followingList.style.display = "none";
+};
 
 async function loadTweets() {
     await $.ajax({
         type: "post",
-        url: "/try",
-        data: { id: 100 },
+        url: "/userPosts",
+        data: {
+            id: parseInt(userID),
+        },
         success: (data) => {
             postsTab.innerHTML = data;
         },

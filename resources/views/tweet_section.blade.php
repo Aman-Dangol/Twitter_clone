@@ -2,7 +2,7 @@
   @if(($tweet->userFollow == 1 || $tweet->userID == Auth::id()) || $type == 'foryou')
 
   <div class="tweet">
-    <div>{{$tweet->username}}</div>
+    <div class="username" id="{{$tweet->userID}}"><a href="profile/{{$tweet->userID}}">{{$tweet->username}}</a></div>
     @if(Auth::id() != $tweet->userID)
     @if( $tweet->userFollow == 0)
     <div><a href="/follow/{{$tweet->userID}}">follow</a></div>

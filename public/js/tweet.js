@@ -5,6 +5,7 @@ import deleteP from "/js/deletePost.js";
 let foryou = document.getElementById("forYou");
 let following = document.getElementById("following");
 let tweetType = localStorage.getItem("type") || "foryou";
+let usernames;
 
 foryou.onclick = () => {
     localStorage.setItem("type", "foryou");
@@ -49,7 +50,8 @@ async function ajax(type = tweetType) {
             deletePost(tag.id);
         };
     });
-
+    usernames = document.querySelectorAll(".username");
+    console.log(usernames);
     if (tweetType == "foryou") {
         foryou.style.backgroundColor = "var(--secondary-color)";
         following.style.backgroundColor = "black";
@@ -96,4 +98,5 @@ function deletePost(id) {
         },
     });
 }
+
 ajax();

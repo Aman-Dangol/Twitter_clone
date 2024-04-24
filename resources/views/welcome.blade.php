@@ -14,7 +14,8 @@
   <main>
     <section class="navigation">
       <div class="nav-content"><a class="profile" href="/profile/{{Auth::id()}}">{{Auth::user()->username}}</a></div>
-      <div class="nav-content">settings</div>
+      <div class="nav-content"><a href="{{route('home-page')}}">home</a></div>
+      <div class="nav-content"><a href="/settings">Settings</a></div>
       <div class="nav-content"><a href="/logout" class="logout">logout</a></div>
     </section>
     <section class="content-container">
@@ -34,7 +35,11 @@
       </section>
     </section>
 
-    <section class="chats">
+    <section class="search">
+      <form action="/search" class="search-form" method="get">
+        <input type="text" name="s">
+        <button>submit</button>
+      </form>
     </section>
   </main>
   <script src="/js/ajaxSetup.js" type="module"></script>

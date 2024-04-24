@@ -1,0 +1,9 @@
+@import url("/js/default.css");
+
+.search-result {
+    padding: 30px;
+    border-bottom: 2px solid var(--secondary-color);
+}
+.mid {
+    border-right: 2px solid var(--secondary-color);
+}

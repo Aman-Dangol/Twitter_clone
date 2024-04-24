@@ -5,9 +5,11 @@ use App\Http\Controllers\TwitterController;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,18 +41,32 @@ Route::post('/update', [TwitterController::class, 'update']);
 Route::get('/follow/{id}', [TwitterController::class, 'follow']);
 Route::get('/unfollow/{id}', [TwitterController::class, 'unfollow']);
 Route::get('/profile/{id}', [TwitterController::class, 'profile']);
-Route::post('try', function () {
-  $data =  DB::table('posts')
-    ->join('users', 'users.id', '=', 'posts.userID')
-    ->leftJoin('likes', 'likes.postID', '=', 'posts.id')
-    ->select(['posts.id', 'users.username', 'posts.userID', 'posts.tweetText'])
-    ->selectRaw('COUNT(likes.postID) AS likeCount')
-    ->selectRaw('CASE WHEN EXISTS (SELECT 1 FROM likes WHERE likes.postID = posts.id AND likes.userID = ?) THEN 1 ELSE 0 END AS userLiked', [Auth::id()])
-    ->selectRaw('CASE WHEN EXISTS (SELECT 1 FROM follows WHERE  follows.followerID = ?) THEN 1 ELSE 0 END AS userFollow', [Auth::id()])
-    ->selectRaw('CASE WHEN EXISTS (SELECT 1 FROM follows WHERE follows.followerID = ? AND follows.followingID = posts.userID) THEN 1 ELSE 0 END AS userFollow', [Auth::id()])
-    ->groupBy('posts.id')
-    ->where('posts.userID', '=', Auth::id())
-    ->orderBy('posts.updated_at', 'desc')
-    ->get();
-  return view('yourPost', ['posts' => $data])->render();
+Route::post('userPosts', [TwitterController::class, 'profilePosts']);
+Route::get('/search', [TwitterController::class, 'search']);
+Route::get('/settings', [TwitterController::class, 'settings']);
+Route::get('/deleteAcc/{id}', function ($id) {
+  $user = User::find($id);
+  $user->delete();
+  return redirect(route('home-page'));
+});
+Route::get('/changePassword', function () {
+  return view("changePassword");
+});
+Route::post('/changepass', function (Request $request) {
+  $request->validate([
+    'oldPass' => ['required'],
+    'newPass' => ['required']
+  ]);
+  if (Auth::attempt([
+    'email' => Auth::user()->email,
+    'password' => $request->oldPass
+  ])) {
+    $user = User::find(Auth::id());
+    $user->password = bcrypt($request->newPass);
+    $user->save();
+    Auth::logout();
+    return redirect(route('home-page'));
+  } else {
+    return response("incorect");
+  }
 });
