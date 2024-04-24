@@ -7,10 +7,10 @@
 body {
     background-color: black;
     color: var(--primary-color);
+    margin: 0;
 }
 
 * {
     box-sizing: border-box;
     border: 0;
-    margin: 3px;
 }

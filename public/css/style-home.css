@@ -30,7 +30,8 @@ a {
     cursor: pointer;
 }
 
-.logout {
+.logout,
+.profile {
     color: var(--primary-color);
 }
 .unfollow:hover {
@@ -95,7 +96,7 @@ textarea {
     white-space: pre;
 }
 
-.tweetText{
+.tweetText {
     white-space: pre;
 }
 form > button {
@@ -124,6 +125,7 @@ form > button:hover,
     border-top: 2px solid var(--secondary-color);
 }
 
+.interactions > a {
 .interactions > a {
     text-decoration: none;
     color: var(--secondary-color);

@@ -24,16 +24,8 @@ class AjaxController extends Controller
             ->groupBy('posts.id')
             ->orderBy('posts.updated_at', 'desc')
             ->get();
-
-
-        $liked = DB::table('likes')
-            ->select('postID')
-            ->where('likes.userID', '=', Auth::id())
-            ->get();
-
         return view('tweet_section', [
             'data' => $data,
-            'liked' => $liked,
             'type' => $req->type
         ])->render();
     }

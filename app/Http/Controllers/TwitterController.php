@@ -159,4 +159,10 @@ class TwitterController extends Controller
          ->delete();
       return redirect(route('home-page'));
    }
+
+   // display profile page\
+   public function profile($id)
+   {
+      return view('profile', ['id' => $id]);
+   }
 }

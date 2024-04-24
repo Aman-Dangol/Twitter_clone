@@ -10,9 +10,10 @@
 </head>
 
 <body>
+
   <main>
     <section class="navigation">
-      <div class="nav-content">profile</div>
+      <div class="nav-content"><a class="profile" href="/profile/{{Auth::id()}}">{{Auth::user()->username}}</a></div>
       <div class="nav-content">settings</div>
       <div class="nav-content"><a href="/logout" class="logout">logout</a></div>
     </section>
