@@ -19,8 +19,11 @@
       <form action="/update" method="post">
         @csrf()
         <input type="text" name="id" value="{{$data[0]->id}}" hidden>
-        <input type="text" name="updatedText" value="{{$data[0]->tweetText}}"  autocomplete="off"/>
-        <button>update</button>
+        <textarea name="updatedText" autocomplete="off" cols="30" rows="7">{{$data[0]->tweetText}}</textarea>
+        <div>
+          <button>update</button>
+
+        </div>
       </form>
     </section>
   </main>

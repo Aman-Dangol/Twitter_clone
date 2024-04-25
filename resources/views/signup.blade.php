@@ -13,27 +13,36 @@
     <header>
       <h1>Twitter Clone</h1>
     </header>
-    <section>
+    <section class="form-section">
       <form action="/store" method="post">
         @csrf()
-        <label for="user-name">user name :</label>
-        <input type="user-name" name="username"><br>
-        @error('username')
-        <div class="err">{{$message}}</div>
-        @enderror()
-        <label for="email">email</label>
-        <input type="email" name="email"><br>
-        @error('email')
-        <div class="err">{{$message}}</div>
-        @enderror()
 
-        <label for="password">password</label>
-        <input type="password" name="password"><br>
-        @error('password')
-        <div class="err">{{$message}}</div>
-        @enderror()
-
-        <button>sign up</button>
+        <div class="form">
+          <label for="user-name">user name :</label>
+          <input type="user-name" name="username">
+          @error('username')
+          <span></span>
+          <div class="err">{{$message}}</div>
+          @enderror()
+          <label for="email">email</label>
+          <input type="email" name="email">
+          @error('email')
+          <span></span>
+          <div class="err">{{$message}}</div>
+          @enderror()
+          <label for="password">password</label>
+          <input type="password" name="password">
+          @error('password')
+          <span></span>
+          <div class="err">{{$message}}</div>
+          @enderror()
+        </div>
+        <div class="middle">
+          <button>sign up</button>
+        </div>
+        <div class="middle">
+          <a href="{{route('login')}}" class="click">go back</a>
+        </div>
       </form>
     </section>
   </main>

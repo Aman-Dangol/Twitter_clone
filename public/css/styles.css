@@ -42,7 +42,7 @@ a {
 }
 /* form section */
 
-.form-section { 
+.form-section {
     border: 2px solid var(--secondary-color);
     width: 60%;
     padding: 12px 0;
@@ -80,13 +80,15 @@ input:focus {
     justify-content: center;
 }
 
-button {
+button,
+.click {
     background-color: black;
     color: white;
     padding: 4px 12px 4px 12px;
     border-radius: 4px;
     border: 2px solid var(--secondary-color);
     cursor: pointer;
+    margin: 0 auto;
 }
 button:hover {
     background-color: var(--secondary-color);
@@ -95,4 +97,16 @@ button:hover {
 #passErr {
     max-height: 14px;
     font-size: 12px;
+}
+
+.middle {
+    display: flex;
+    justify-content: center;
+}
+
+.click {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
 }

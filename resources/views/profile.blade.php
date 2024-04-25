@@ -25,7 +25,7 @@
   <main>
     <section class="navigation">
       <div class="nav-content"><a class="profile" href="{{route('home-page')}}">Home</a></div>
-      <div class="nav-content">settings</div>
+      <div class="nav-content"><a href="/settings">Settings</a></div>
       <div class="nav-content"><a href="/logout" class="logout">logout</a></div>
     </section>
     <section>

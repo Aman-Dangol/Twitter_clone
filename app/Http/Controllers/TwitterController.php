@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 use function Laravel\Prompts\error;
 
@@ -49,9 +50,8 @@ class TwitterController extends Controller
          'password' => $request->password
       ])) {
          return redirect(route("home-page"));
-      } else {
-         return response("something went wrong");
       }
+      return redirect()->back()->withErrors(['password' => 'Incorrect email or password.']);
    }
    public function login()
    {

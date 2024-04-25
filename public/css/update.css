@@ -24,3 +24,14 @@ button {
 button:hover {
     background-color: var(--secondary-color);
 }
+
+textarea {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    font-size: 20px;
+    resize: none;
+    outline: none;
+    border: 2px solid var(--secondary-color);
+    white-space: pre;
+    margin-bottom: 2%;
+}
