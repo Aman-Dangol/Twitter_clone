@@ -12,43 +12,49 @@
 
 <body>
     <main>
-        <!-- comment header -->
-        <a href="{{route('home-page')}}">home</a>
-        <section class="tweet">
-            <div>{{$mainPost[0]->username}}</div>
-            <div></div>
-            <div>{{$mainPost[0]->tweetText}}</div>
-            <div>
-                <span>{{$mainPost[0]->likeCount}}</span>
-                @if($mainPost[0]->userLiked == 0)
-                <a class="like post" id="{{$mainPost[0]->id}}">like</a>
-                @else
-                <a class="unlike post" id="{{$mainPost[0]->id}}">unlike</a>
-                @endif
-            </div>
+        <section class="navigation">
+            <div class="nav-content"><a class="profile" href="/profile/{{Auth::id()}}">{{Auth::user()->username}}</a></div>
+            <div class="nav-content"><a href="{{route('home-page')}}">home</a></div>
+            <div class="nav-content"><a href="/settings">Settings</a></div>
+            <div class="nav-content"><a href="/logout" class="logout">logout</a></div>
         </section>
-        <!-- input comment -->
-        <section class="form-section">
-            <form action="/addcomment">
-                <input type="text" name="commentText" required autocomplete="off" autofocus />
-                <input type="text" id="postID" name="postID" value='{{$mainPost[0]->id}}' hidden>
-                @error('commentText')
-                <span>{{$message}}</span>
-                @enderror()
-                <button>comment</button>
-            </form>
-        </section>
-        <!-- comments -->
         <section>
-            @foreach($comments as $comment)
-            <div class="comment">
-                <div>{{$comment->username}}</div>
-                <div>{{$comment->commentText}}</div>
-                <div class="interactions">
-
+            <section class="tweet">
+                <div><a href="/profile/{{$mainPost[0]->userID}}">{{$mainPost[0]->username}}</a></div>
+                <div></div>
+                <div>{{$mainPost[0]->tweetText}}</div>
+                <div>
+                    <span>{{$mainPost[0]->likeCount}}</span>
+                    @if($mainPost[0]->userLiked == 0)
+                    <a class="like post" id="{{$mainPost[0]->id}}">like</a>
+                    @else
+                    <a class="unlike post" id="{{$mainPost[0]->id}}">unlike</a>
+                    @endif
                 </div>
-            </div>
-            @endforeach
+            </section>
+            <!-- input comment -->
+            <section class="form-section">
+                <form action="/addcomment">
+                    <input type="text" name="commentText" required autocomplete="off" autofocus />
+                    <input type="text" id="postID" name="postID" value='{{$mainPost[0]->id}}' hidden>
+                    @error('commentText')
+                    <span>{{$message}}</span>
+                    @enderror()
+                    <button>comment</button>
+                </form>
+            </section>
+            <!-- comments -->
+            <section>
+                @foreach($comments as $comment)
+                <div class="comment">
+                    <div><a href="/profile/{{$comment->id}}">{{$comment->username}}</a></div>
+                    <div>{{$comment->commentText}}</div>
+                    <div class="interactions">
+
+                    </div>
+                </div>
+                @endforeach
+            </section>
         </section>
     </main>
     <script src="/js/ajaxSetup.js" type="module"></script>

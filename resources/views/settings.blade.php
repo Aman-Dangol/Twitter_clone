@@ -18,9 +18,11 @@
       <div class="nav-content">settings</div>
       <div class="nav-content"><a href="/logout" class="logout">logout</a></div>
     </section>
-    <section>
-      <a href="/deleteAcc/{{Auth::id()}}">delete acc</a>
-      <a href="/changePassword">change password</a>
+    <section class="settings">
+      <div>
+        <a href="/deleteAcc/{{Auth::id()}}">delete acc</a>
+        <a href="/changePassword">change password</a>
+      </div>
     </section>
 
     <section>

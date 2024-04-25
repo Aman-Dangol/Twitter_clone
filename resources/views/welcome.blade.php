@@ -36,8 +36,9 @@
     </section>
 
     <section class="search">
+
       <form action="/search" class="search-form" method="get">
-        <input type="text" name="s">
+        <input type="text" name="s" placeholder="search user" required>
         <button>submit</button>
       </form>
     </section>
