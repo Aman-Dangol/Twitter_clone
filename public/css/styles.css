@@ -107,6 +107,10 @@ button:hover {
     justify-content: center;
 }
 
+.middle a:hover{
+    background-color: var(--secondary-color);
+}
+
 .click {
     display: block;
     text-decoration: none;
