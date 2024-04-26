@@ -44,12 +44,13 @@ a {
 
 .form-section {
     border: 2px solid var(--secondary-color);
-    width: 60%;
+    min-width: 40%;
     padding: 12px 0;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 70px;
 }
 
 .form {
@@ -62,8 +63,7 @@ label {
     width: max-content;
 }
 input {
-    max-width: 150px;
-    width: 100%;
+    min-width: 80%;
     border-radius: 4px;
 }
 input:focus {
@@ -75,11 +75,14 @@ input:focus {
     width: fit-content;
 }
 .button {
-    width: 100%;
+    padding-top: 30px;
     display: flex;
     justify-content: center;
 }
 
+button {
+    width: 40%;
+}
 button,
 .click {
     background-color: black;

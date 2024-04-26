@@ -22,12 +22,12 @@
       <form action="/changepass" id="password-change" method="post">
         @csrf()
         <label for="oldpass">enter previous password</label>
-        <input type="text" name="oldPass">
+        <input type="password" name="oldPass">
         @error('oldPass')
         {{$message}}
         @endError()
         <label for="newpass">enter new password</label>
-        <input type="text" name="newPass">
+        <input type="password" name="newPass">
         @error('newPass')
         {{$message}}
         @endError()
